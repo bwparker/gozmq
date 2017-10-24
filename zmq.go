@@ -315,6 +315,10 @@ func Subscribe(addr string, topics []string) (*Conn, error) {
 	return &Conn{conn}, nil
 }
 
+func (c *Conn) SetDeadline(t time.Time) error {
+	return c.conn.SetDeadline(t)
+}
+
 // Receive a message from the publisher. It blocks until a new message is
 // received.
 func (c *Conn) Receive() ([][]byte, error) {
